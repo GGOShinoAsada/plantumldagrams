@@ -1,0 +1,90 @@
+@startuml
+package Comuterstore{
+    class Products {
+        ----
+        - String Id 
+        - String Name
+        - String SupplerCompany
+        - String Category
+        - String OS
+        - Double Price
+        - Integer CountAll
+        - Integer AmmountProducts
+        - Double Rating
+        - String Description
+        ----
+        + void setId(String _id)
+        + String getId()
+        + void setName(String n)
+        + String getName()
+        + void setSupplerCompany(String sk)
+        + String getSupplerCompany()
+        + void setCategory(String c)
+        + void getCategory()
+        + void setOS(String _os)
+        + String getOs()
+        + void setPrice(Double _p)
+        + Double getPrice()
+        + void setCountAll(int call)
+        + Integer getCountAll()
+        + void setAmmountsProducts(String n)
+        + String getAmmountsProducts()
+        + void setRating()
+        + Double getRating()
+        + void setDescription(String d)
+        + String getDescription()
+    }
+    class Categories{
+        ----
+        - String Id
+        - String Category
+        - String Description
+        ----
+        + void setId(String id)
+        + String getId()
+        + void SetCategory(String c)
+        + String GetCategory()
+        + void setDescription(String d)
+        + String getDescription()
+    }
+    class OS{
+        ----
+        - String Id
+        - Sring Name
+        - String Description
+        - Double Rating
+        ----
+        + void setId(String _id)
+        + String getId()
+        + void setName(String n)
+        + String getName()
+        + void setDescription()
+        + String getDescription()
+    }
+    class SupplerCompanies{
+    
+       {field} - String Id
+       {field} - String Name
+       {field} - String Address
+       {field} - String Description
+       {field} - Double Rating
+       {method} + void setId(String _id)
+       {method} + String getId()
+       {method} + void setName(String n)
+       {method} + String getName()
+       {method} + void setAdderss()
+       {method} + String getAddress
+       {method} + void setDescription(String r)
+       {method} + String getDescription()
+       {method} + void setRating(Double r)
+       {method} + Double getRating()
+    }
+    note right of SupplerCompanies::Name
+        this property is describe name os suppler company
+    end note
+    Products "1" *-- "many" SupplerCompanies: Composition
+    note on link #fafafa: связь типа композиции 
+    Products "1" *-- "many" OS
+    Products "1" *-- "many" Categories: Composition
+}
+@enduml

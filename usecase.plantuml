@@ -1,0 +1,49 @@
+@startuml
+skinparam ActorStyle Hollow
+package ComputerStore{
+    package Actors{
+        
+        actor User as US1
+        actor Администратор as ADM
+        actor Модератор as MOD
+        :Руководитель\nкомпании: as dir
+        :Медеджер по продажам: as mpp
+        :Покупатель: as By
+        :Продавец: as sell
+    }
+    package checkout{
+        usecase "Перейти в каталог маззина" as uc1
+        usecase  "зарешистрироваться" as uc2
+        usecase "авторизоваться" as uc3
+        usecase "авторизоваться" as uc3
+        usecase "поиск товара в каталоге" as uc4
+        usecase "товар не найден" as uc5
+        usecase "перейти к оформлению" as uc7
+        usecase uc10 as "ввести данные
+        --
+        <b>entry</b>/ имя пользователя, фирма поставщик, способ доставки, способ оплаты, count
+        <b>exit</b>/ получить идентификатор фирмы поставщика, способа оплаты и спопоба доставки" 
+        usecase "транзакция" as uc_tran_commit
+        usecase "оформить заказ" as uc_checkout
+        usecase "оплата прошла неудачно" as uc_tran_rollback
+   
+    }
+    ADM --> US1
+    MOD --> US1
+    dir --> US1
+    mpp --> US1
+    By --> US1
+    sell --> US1
+    US1 --> uc2
+    US1 --> uc3
+    By --> uc1
+    By --> uc4
+    uc4 <|-- uc5
+    uc4 --> uc7
+    By --> uc10
+    uc10 <|-- uc_tran_commit
+    uc_tran_commit <|-- uc_tran_rollback: откат
+    note on link #farafa: откат транзакции
+    By --> uc_checkout
+}
+@enduml
